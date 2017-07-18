@@ -130,6 +130,7 @@ Server::create(WEBROOT.'api/v1', 'RestApi\Auth') //base entry points `/admin`
       ->addPostRoute('rtcp', 'doRTCPReport') // => /api/session
       ->addPostRoute('qos', 'doQOSReport') // => /api/session
       ->addPostRoute('log', 'doLogReport') // => /api/session
+      ->addPostRoute('remotelog', 'doRemoteLog') // => /api/session
       ->addPostRoute('rtc', 'doRtcReport') // => /api/session/rtc
       ->addPostRoute('share/log', 'doLogReportById') // => /api/report/share/log
       ->addPostRoute('share/rtcp', 'doRTCPReportById') // => /api/report/share/log

@@ -1833,14 +1833,13 @@ class Report {
                 return $answer;                 
         }
                         
-        $search['correlation_id'] = implode(";",  array_keys($mapsCallid));
+        $search['correlation_id'] = implode(" OR ",  array_keys($mapsCallid));
 
         /* remote log */
         
         $method = "GET";
-        $queryData = array('q' => 'other','from' => 0,'size'=> 100, 'sort' => 'postDate:desc' ) ;
-        //$url = REMOTE_LOG_URL.'/'.REMOTE_LOG_INDEX.'/'.REMOTE_LOG_DOC_TYPE.'/_search?'.http_build_query($queryData) ;
-        $url = REMOTE_LOG_URL.'/'.REMOTE_LOG_INDEX.'/_search';
+        $queryData = array('q' => urlencode($search['correlation_id']),'from' => 0,'size'=> 200, 'sort' => 'mvtime:desc');
+        $url = REMOTE_LOG_URL.'/_search?q='.http_build_query($queryData);
         $ch = curl_init();                    
 
         curl_setopt($ch, CURLOPT_URL, $url);
